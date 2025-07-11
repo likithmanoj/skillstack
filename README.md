@@ -1,79 +1,68 @@
-Awesome! Since you’ve completed authentication and full CRUD for the Skill resource and tested it with Postman, here’s a clean and focused README.md you can use right away for your GitHub repo:
+# 🧠 SkillStack
 
-⸻
-
-# 🛠️ SkillStack
-
-SkillStack is a full-stack learning tracker built with **Phoenix** and Postgres, designed to help users log their skills, track progress, and manage learning goals. This backend is fully API-driven and tested with Postman.
+SkillStack is a full-stack learning tracker built with **Phoenix** and **PostgreSQL**, designed to help users log, manage, and track skills. The backend exposes a clean JSON API, tested entirely via Postman.
 
 ---
 
-## 🚀 Features
+## 🔧 Features
 
-- 🔐 User Authentication (via `phx.gen.auth`)
-- 📚 Skill management: Create, Read, Update, Delete
-- 🧪 Fully testable via Postman (API-first)
-- ⚡ JSON API (no HTML rendering)
-- 🗄️ PostgreSQL support
-
----
-
-## 📦 Tech Stack
-
-- **Phoenix 1.7**
-- **Elixir**
-- **Ecto**
-- **PostgreSQL**
-- **phx.gen.auth** for authentication
-- **Postman** for API testing
+- ✅ User authentication (`phx.gen.auth`)
+- ✅ Skills CRUD via JSON API
+- ✅ Fully testable with Postman
+- ✅ Phoenix 1.7 project with Ecto/Postgres
 
 ---
 
-## 📁 Project Structure
+## 🚀 Getting Started
 
-lib/
-├── skillstack # Business logic
-│ ├── accounts/ # Auth context and User schema
-│ └── skills/ # Skill schema and context
-├── skillstack_web/ # Web/API layer (controllers, views, router)
-priv/repo/migrations/ # DB schema migrations
-
----
-
-## 📌 Setup Instructions
+### 1. Clone the repo
 
 ```bash
-# Clone the repo
 git clone https://github.com/your_username/skillstack.git
 cd skillstack
 
-# Install dependencies
+2. Install dependencies
+
 mix deps.get
 
-# Set up the database
+3. Setup the database
+
 mix ecto.create
 mix ecto.migrate
 
-# Start the server
+4. Start the Phoenix server
+
 mix phx.server
 
 Visit: http://localhost:4000
 
 ⸻
 
-🧪 API Testing with Postman
+📂 Project Structure
 
-You can test the /api/skills endpoints using Postman:
+lib/
+├── skillstack/              # Contexts (Accounts, Skills)
+│   ├── accounts/            # User schema + auth
+│   └── skills/              # Skill schema + logic
+├── skillstack_web/          # Web/API layer (controllers, views, router)
+priv/repo/migrations/        # Ecto migrations
 
-➕ Create a Skill
+
+⸻
+
+🧪 API Endpoints (Test with Postman)
+
+➕ Create Skill
 
 POST /api/skills
-Content-Type: application/json
+Headers:
+  Content-Type: application/json
 
+Body:
 {
   "skill": {
-    "name": "Elixir",
-    "level": 3
+    "name": "Phoenix",
+    "level": 4
   }
 }
 
@@ -81,42 +70,47 @@ Content-Type: application/json
 
 GET /api/skills
 
-✏️ Update a Skill
+🔍 Get a Single Skill
+
+GET /api/skills/:id
+
+✏️ Update Skill
 
 PUT /api/skills/:id
 
-❌ Delete a Skill
+Body:
+{
+  "skill": {
+    "name": "Phoenix",
+    "level": 5
+  }
+}
+
+❌ Delete Skill
 
 DELETE /api/skills/:id
 
 
 ⸻
 
-✅ To Do (Next)
-	•	Link Skills to Users (belongs_to :user)
-	•	Create Goal, Project, and Log resources
-	•	Add pagination, filtering, and search
-	•	Build React frontend (client app)
+📌 Upcoming
+	•	Link skills to authenticated user (user_id)
+	•	Build Goals, Projects, and Logs features
+	•	React frontend integration
 
 ⸻
 
-🧑 Author
+👤 Author
 
 Likith Manoj M
-GitHub
+📫 likithmanoj@gmail.com
+🌐 github.com/likithmanoj
 
 ⸻
 
-📄 License
+📝 License
 
 MIT License
 
 ---
-
-Let me know if:
-- You want to add screenshots
-- You're ready to connect to React frontend
-- Or you want to include sample Postman collection export
-
-Happy to help you keep pushing it forward 🚀
 ```
