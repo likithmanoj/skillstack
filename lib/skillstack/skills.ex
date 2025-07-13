@@ -7,6 +7,7 @@ defmodule Skillstack.Skills do
   alias Skillstack.Repo
 
   alias Skillstack.Skills.Skill
+  alias Skillstack.Accounts.User
 
   @doc """
   Returns the list of skills.
@@ -49,9 +50,10 @@ defmodule Skillstack.Skills do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_skill(attrs \\ %{}) do
+  def create_skill(%User{} = user, attrs \\ %{}) do
     %Skill{}
-    |> Skill.changeset(attrs)
+    |> Skill.changeset(attrs)|>
+    Ecto.Changeset.put_assoc(:user, user)
     |> Repo.insert()
   end
 

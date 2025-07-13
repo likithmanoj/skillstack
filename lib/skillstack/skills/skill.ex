@@ -5,6 +5,7 @@ defmodule Skillstack.Skills.Skill do
   schema "skills" do
     field :name, :string
     field :level, :integer
+    belongs_to :user, Skillstack.Accounts.User
 
     timestamps(type: :utc_datetime)
   end
