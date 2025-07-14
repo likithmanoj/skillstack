@@ -51,10 +51,15 @@ defmodule Skillstack.Skills do
 
   """
   def create_skill(%User{} = user, attrs \\ %{}) do
-    %Skill{}
-    |> Skill.changeset(attrs)|>
-    Ecto.Changeset.put_assoc(:user, user)
-    |> Repo.insert()
+    user
+    |> Ecto.build_assoc(:skills)|> Skill.changeset(attrs)|>Repo.insert()
+  end
+
+  def list_skills_for_user(user_id)do
+    Repo.all(from s in Skill,where: s.user_id ==^user_id)
+  end
+  def get_skill_for_user(skill_id,user_id)do
+    Repo.get_by!(Skill, id: skill_id, user_id: user_id)
   end
 
   @doc """
@@ -72,7 +77,12 @@ defmodule Skillstack.Skills do
   def update_skill(%Skill{} = skill, attrs) do
     skill
     |> Skill.changeset(attrs)
+    |> Ecto.Changeset.assoc_constraint(:user)
     |> Repo.update()
+  end
+
+  def delete_skill_for_user(user_id, skill_id)do
+    get_skill_for_user(skill_id,user_id)|>Repo.delete!()
   end
 
   @doc """
